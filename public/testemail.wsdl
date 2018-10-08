@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:tns="urn:arnleadservicewsdl"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    targetNamespace="urn:testEmailservicewsdl">
+
+    <types>
+        <xsd:schema targetNamespace="urn:testEmailwsdl">
+            <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+            <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+        </xsd:schema>
+    </types>
+
+    <message name="testEmailRequest">
+        <part name="email" type="xsd:string" />
+    </message>
+
+    <message name="testEmailResponse">
+        <part name="return" type="xsd:int" />
+    </message>
+
+    <portType name="testEmailwsdlPortType">
+        <operation name="testEmail">
+            <documentation>Retourne 0 si email invalide, 1 si email valide</documentation>
+            <input message="tns:testEmailRequest"/>
+            <output message="tns:testEmailResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="testEmailwsdlBinding" type="tns:testEmailwsdlPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="testEmail">
+            <soap:operation soapAction="urn:arnleadservicewsdl#testEmail" style="rpc"/>
+
+            <input>
+                <soap:body use="encoded" namespace="urn:testEmailwsdl"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+
+            <output>
+                <soap:body use="encoded" namespace="urn:testEmailwsdl"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="testEmailwsdl">
+        <port name="testEmailwsdlPort" binding="tns:testEmailwsdlBinding">
+            <soap:address location="http://127.0.0.1:8000/soap" />
+        </port>
+    </service>
+</definitions>

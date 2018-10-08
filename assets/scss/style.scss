@@ -1,0 +1,115 @@
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+* {
+    font-family: OpenSans-semibold,Arial,Helvetica,sans-serif;
+    margin:0;
+    padding:0;
+}
+
+a, a:hover {
+    text-decoration:none;
+}
+
+li {
+    list-style-type: none;
+}
+
+//////////////////////////
+// *** Form Elements
+//////////////////////////
+
+input[type="submit"], button {
+    cursor:pointer;
+}
+
+.form-control::-webkit-input-placeholder {
+    color: #C0C0C0;
+    font-size:16px;
+}
+
+//////////////////////////
+// *** Common
+//////////////////////////
+
+body {
+    background-color: #fff;
+}
+
+.content {
+    margin:10px;
+}
+
+h1 {
+    margin:20px;
+    text-align:center;
+    color:#000;
+}
+
+header {
+
+    .navbar {
+
+        display:flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .navbar-left, .navbar-right {
+            display: flex;
+            a {
+                color:#fff;
+                border:0;
+            }
+        }
+
+    }
+}
+
+form {
+    width:80%;
+}
+
+.table {
+
+    th, td {
+        vertical-align: initial;
+    }
+
+    th {
+        text-align:center;
+    }
+
+    form {
+        width:initial;
+        margin:0;
+    }
+
+    .action {
+        display:flex;
+
+        .btn {
+            margin:0 5px;
+        }
+    }
+}
+
+.btn-back {
+    margin-top:10px;
+}
+
+.btn-block {
+    display:flex;
+
+    .btn {
+        margin:15px 5px 0 0;
+    }
+
+}
+
+
+.security-form-content {
+    display:flex;
+    margin-top:30px;
+    form {
+        width:50%;
+    }
+}

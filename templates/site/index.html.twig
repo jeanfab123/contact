@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+
+    <h1>Interface de contact</h1>
+
+    Bienvenue sur l'interface de gestion des contacts.
+
+    {% if not app.user %}
+
+        Vous pouvez vous connecter en utilisant le formulaire ci-dessous.<br><br>
+        Si vous n'avez pas encore de compte, <a href="{{ path('securite_inscription') }}">cliquez-ici</a> !
+
+        <div class="security-form-content">
+            {{ include('securite/_form_connexion.html.twig') }}
+        </div>
+    {% else %}
+        Pour gérer vos contacts, <a href="{{ path('contact_index') }}">cliquez-ici</a> !
+    {% endif %}
+
+{% endblock %}

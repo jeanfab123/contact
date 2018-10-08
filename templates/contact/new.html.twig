@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un contact{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un contact</h1>
+
+    {{ include('contact/_form.html.twig') }}
+
+    <a class="btn btn-primary btn-back" href="{{ path('contact_index') }}">Retour</a>
+{% endblock %}
