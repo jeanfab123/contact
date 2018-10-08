@@ -1,4 +1,52 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    <div class="block-email">
+        {{ form_row(form.email) }}
+        <a id="test-button" class="btn btn-primary">Tester l'email</a>
+    </div>
+    {{ form_row(form.nom) }}
+    {{ form_row(form.prenom) }}
     <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}
+
+<script>
+
+    $(document).ready(function(){
+
+        $( "#contact_email" ).keydown(function() {
+            $("#test-button").html("Tester l'email");
+            $("#test-button").removeClass();
+            $("#test-button").addClass("btn btn-primary");
+        });
+
+        $('.block-email .btn').click(function(){
+
+            $("#test-button").html("Patientez...");
+            $("#test-button").removeClass();
+            $("#test-button").addClass("btn btn-warning");
+
+            $.ajax({ 
+                url: '/soap',
+                data: {"email": $('#contact_email').val()},
+                type: 'get',
+                success: function(result)
+                {
+
+                    if (result == 0) {
+                        $("#test-button").html("Email invalide !");
+                        $("#test-button").removeClass();
+                        $("#test-button").addClass("btn btn-danger");     
+                    } else if(result == 1) {
+                        $("#test-button").html("Email valide !");
+                        $("#test-button").removeClass();
+                        $("#test-button").addClass("btn btn-success");
+                    } else {
+                        $("#test-button").html("Erreur : retestez l'email !");
+                        $("#test-button").removeClass();
+                        $("#test-button").addClass("btn btn-danger");
+                    }
+                }
+            });
+        });
+    });
+
+</script>

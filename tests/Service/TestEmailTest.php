@@ -2,17 +2,17 @@
 
 namespace App\Tests\Service;
 
-use App\Service\TestEmailService;
 use PHPUnit\Framework\TestCase;
+use App\Service\TestEmailService;
 
 class TestEmailTest extends TestCase
 {
     public function testValidEmail()
     {
 
-        $testEMail = new TestEmailService();
+        $testEmail = new TestEmailService();
 
-        $result = $testEMail->testEmail('nom@domaine.com');
+        $result = $testEmail->testEmail('nom@domaine.com');
 
         $this->assertEquals(1, $result);
     }
@@ -20,9 +20,9 @@ class TestEmailTest extends TestCase
     public function testEmptyEmail()
     {
 
-        $testEMail = new TestEmailService();
+        $testEmail = new TestEmailService();
 
-        $result = $testEMail->testEmail('');
+        $result = $testEmail->testEmail('');
 
         $this->assertEquals(1, $result);
     }
@@ -30,9 +30,9 @@ class TestEmailTest extends TestCase
     public function testNoArobaseEmail()
     {
 
-        $testEMail = new TestEmailService();
+        $testEmail = new TestEmailService();
 
-        $result = $testEMail->testEmail('nomdomaine.com');
+        $result = $testEmail->testEmail('nomdomaine.com');
 
         $this->assertEquals(1, $result);
     }
@@ -40,27 +40,27 @@ class TestEmailTest extends TestCase
     public function testNoDotEmail()
     {
 
-        $testEMail = new TestEmailService();
+        $testEmail = new TestEmailService();
 
-        $result = $testEMail->testEmail('nom@domainecom');
+        $result = $testEmail->testEmail('nom@domainecom');
 
         $this->assertEquals(1, $result);
     }
 
     public function testNoArobaseNoDotEmail()
     {
-        $testEMail = new TestEmailService();
+        $testEmail = new TestEmailService();
 
-        $result = $testEMail->testEmail('nomdomainecom');
+        $result = $testEmail->testEmail('nomdomainecom');
 
         $this->assertEquals(1, $result);
     }
 
     public function testSpecialCharEmail()
     {
-        $testEMail = new TestEmailService();
+        $testEmail = new TestEmailService();
 
-        $result = $testEMail->testEmail('nom@&*domainecom');
+        $result = $testEmail->testEmail('nom@&*domainecom');
 
         $this->assertEquals(1, $result);
     }

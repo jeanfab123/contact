@@ -117,4 +117,14 @@ class ContactController extends AbstractController
 
         return $this->redirectToRoute('contact_index');
     }
+
+    /**
+     * @Route("/test-contact-email/{email}", name="test_contact_email", methods="GET")
+     */
+    public function testContactEmail(Request $request) {
+
+        $soapClient = new \SoapClient('http://'.$_SERVER['HTTP_HOST'].'/soap');
+
+        $result = $soapClient->call('testEmail', $request->get('email'));
+    }
 }

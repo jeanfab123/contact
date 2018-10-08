@@ -113,3 +113,16 @@ form {
         width:50%;
     }
 }
+
+.block-email {
+    display:flex;
+    a.btn {
+        margin-left:10px;
+        height:40px;
+        cursor:pointer;
+        color:#fff;
+        &:hover {
+            color:#fff;
+        }
+    }
+}

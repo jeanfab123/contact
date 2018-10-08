@@ -5,11 +5,6 @@ namespace App\Service;
 class TestEmailService
 {
 
-	public function __construct()
-	{
-
-	}
-
 	public function testEmail($email)
 	{
 		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
