@@ -109,7 +109,9 @@ class ContactController extends AbstractController
                 ]);
 
                 $em = $this->getDoctrine()->getManager();
-                $em->remove($adresses);
+                if ($adresses) {
+                    $em->remove($adresses);
+                }
                 $em->remove($contact);
                 $em->flush();
             }
@@ -123,8 +125,8 @@ class ContactController extends AbstractController
      */
     public function testContactEmail(Request $request) {
 
-        $soapClient = new \SoapClient('http://'.$_SERVER['HTTP_HOST'].'/soap');
+        $soapClient = new \SoapClient('http://'.$_SERVER['HTTP_HOST'].'/soap?wsdl');
 
-        $result = $soapClient->call('testEmail', $request->get('email'));
+        $result = $soapClient->call('test', array('email', $request->get('email')));
     }
 }

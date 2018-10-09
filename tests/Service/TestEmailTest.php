@@ -5,6 +5,8 @@ namespace App\Tests\Service;
 use PHPUnit\Framework\TestCase;
 use App\Service\TestEmailService;
 
+print "ok";
+
 class TestEmailTest extends TestCase
 {
     public function testValidEmail()

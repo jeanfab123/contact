@@ -29,11 +29,7 @@ class AdresseController extends AbstractController
             'utilisateur' => $this->getUser(),
             'id' => $request->get('contact_id')
         ]);
-/*
-print '<pre>';
-var_dump($contact);
-exit;
-*/
+
         if ($contact != null) {
             $adresses = $adresseRepository->findBy([
                 'contact' => $request->get('contact_id')
@@ -55,12 +51,6 @@ exit;
 
         $adresse = new Adresse();
 
-/*
-        $form = $this->createForm(AdresseType::class, $adresse)
-        ->add('contact', HiddenType::class, [
-            'data' => $request->get('contact_id'),
-        ]);
-*/
         $form = $this->createForm(AdresseType::class, $adresse);
         
         $form->handleRequest($request);
@@ -72,21 +62,15 @@ exit;
                 'id' => $request->request->get('contact_id')
             ]);
 
-            $contact2 = new Contact;
-print '<pre>';
-var_dump($contact);
-var_dump($contact2);
+            $contact = $contact[0];
 
-//            $adresse->setContact($contact2);
-            $adresse->setContact($contact2);
+            $adresse->setContact($contact);
 
-var_dump($adresse);
-exit;
             $em = $this->getDoctrine()->getManager();
             $em->persist($adresse);
             $em->flush();
 
-            return $this->redirectToRoute('adresse_index');
+            return $this->redirectToRoute('adresse_index', ['contact_id' => $contact->getId()]);
         }
 
         return $this->render('adresse/new.html.twig', [
