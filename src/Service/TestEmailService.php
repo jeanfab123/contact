@@ -5,7 +5,8 @@ namespace App\Service;
 class TestEmailService
 {
 
-	public function __construct() {
+	public function __construct()
+	{
 
 	}
 

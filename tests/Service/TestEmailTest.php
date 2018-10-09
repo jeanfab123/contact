@@ -5,8 +5,6 @@ namespace App\Tests\Service;
 use PHPUnit\Framework\TestCase;
 use App\Service\TestEmailService;
 
-print "ok";
-
 class TestEmailTest extends TestCase
 {
     public function testValidEmail()
@@ -14,7 +12,7 @@ class TestEmailTest extends TestCase
 
         $testEmail = new TestEmailService();
 
-        $result = $testEmail->testEmail('nom@domaine.com');
+        $result = $testEmail->test('nom@domaine.com');
 
         $this->assertEquals(1, $result);
     }
@@ -24,7 +22,7 @@ class TestEmailTest extends TestCase
 
         $testEmail = new TestEmailService();
 
-        $result = $testEmail->testEmail('');
+        $result = $testEmail->test('');
 
         $this->assertEquals(1, $result);
     }
@@ -34,7 +32,7 @@ class TestEmailTest extends TestCase
 
         $testEmail = new TestEmailService();
 
-        $result = $testEmail->testEmail('nomdomaine.com');
+        $result = $testEmail->test('nomdomaine.com');
 
         $this->assertEquals(1, $result);
     }
@@ -44,7 +42,7 @@ class TestEmailTest extends TestCase
 
         $testEmail = new TestEmailService();
 
-        $result = $testEmail->testEmail('nom@domainecom');
+        $result = $testEmail->test('nom@domainecom');
 
         $this->assertEquals(1, $result);
     }
@@ -53,7 +51,7 @@ class TestEmailTest extends TestCase
     {
         $testEmail = new TestEmailService();
 
-        $result = $testEmail->testEmail('nomdomainecom');
+        $result = $testEmail->test('nomdomainecom');
 
         $this->assertEquals(1, $result);
     }
@@ -62,7 +60,7 @@ class TestEmailTest extends TestCase
     {
         $testEmail = new TestEmailService();
 
-        $result = $testEmail->testEmail('nom@&*domainecom');
+        $result = $testEmail->test('nom@&*domainecom');
 
         $this->assertEquals(1, $result);
     }
