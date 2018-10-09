@@ -81,15 +81,13 @@ LDC : lancer le watcher SASS
     (à chaque compilation, il créera les fichiers /public/build/css/style.css et /public/build/js/js.js)
 
 
+LDC : pour lancer les tests unitaires
+
+    php bin/phpunit tests/Service/TestEmailTest.php
+
 _____________________________________________________________________________________
 
 
 TO DO :
-
-    Debugger le problème de Class Path :
-
-        Pour lancer les tests unitaires :
-
-            php bin/phpunit tests/Service/TestEmailTest.php
 
     Debugger le lancement du SOAP Server
