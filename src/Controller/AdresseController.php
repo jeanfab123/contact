@@ -108,6 +108,7 @@ class AdresseController extends AbstractController
             return $this->render('adresse/edit.html.twig', [
                 'adresse' => $adresse,
                 'form' => $form->createView(),
+                'contact_id' => $adresse->getContact()->getId()
             ]);
         } else {
             return $this->redirectToRoute('contact_index');
