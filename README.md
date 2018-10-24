@@ -84,10 +84,3 @@ LDC : lancer le watcher SASS
 LDC : pour lancer les tests unitaires
 
     php bin/phpunit tests/Service/TestEmailTest.php
-
-_____________________________________________________________________________________
-
-
-TO DO :
-
-    Debugger le lancement du SOAP Server
