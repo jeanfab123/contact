@@ -4,14 +4,18 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
+use App\Service\TestEmailService;
 use App\Repository\AdresseRepository;
 use App\Repository\ContactRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
+ * Class ContactController
+ * Gestion de toutes les méthodes liées à la partie "contact" (listing, ajout, modification, suppression)
  * @Route("/contact")
  */
 class ContactController extends AbstractController
@@ -128,5 +132,22 @@ class ContactController extends AbstractController
         $soapClient = new \SoapClient('http://'.$_SERVER['HTTP_HOST'].'/soap?wsdl');
 
         $result = $soapClient->call('test', array('email', $request->get('email')));
+    }
+
+    /**
+     * Teste l'email et renvoie un Json
+     * @param object $testEmailService
+     * @return Json
+     * @Route("/test/{email}", name="test_contact_email_rest", methods="GET")
+     */
+    public function testContactEmailRest(TestEmailService $testEmailService, Request $request) {
+        $testEmailResult = $testEmailService->test($request->get('email'));
+        if ($testEmailResult) {
+            $tabTestEmailResult['result'] = 1;
+        } else {
+            $tabTestEmailResult['result'] = 0;
+        }
+
+        return new JsonResponse($tabTestEmailResult, 200);
     }
 }
